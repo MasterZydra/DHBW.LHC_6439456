@@ -6,6 +6,7 @@ public class Ring {
     private Magnet[] magnets;
     private ProtonTrap protonTrap;
     private Detector detector;
+    private LargeHadronCollider lhc;
 
     public Ring() {
         this.magnets = new Magnet[72];

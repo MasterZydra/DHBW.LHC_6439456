@@ -3,6 +3,7 @@ public class USP {
     private boolean isActivated;
 
     private Battery[] batteries;
+    private LargeHadronCollider lhc;
 
     public USP() {
         this.batteries = new Battery[25];
