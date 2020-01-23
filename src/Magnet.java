@@ -1,6 +1,6 @@
 public class Magnet {
     private boolean isActivated;
-    private MagnetDirection direction;
+    private MagneticDirection direction;
     private int fieldStrength;
 
     public void activate() {

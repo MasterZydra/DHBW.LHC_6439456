@@ -3,6 +3,6 @@ public class Proton {
     private double weight;
 
     public Proton() {
-        this. structure = new int[100][100][100];
+        this.structure = new int[100][100][100];
     }
 }
