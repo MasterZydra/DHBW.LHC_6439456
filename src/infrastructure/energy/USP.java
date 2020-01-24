@@ -1,5 +1,7 @@
 package infrastructure.energy;
 
+import infrastructure.LargeHadronCollider;
+
 public class USP {
     private boolean isStandBy;
     private boolean isActivated;
