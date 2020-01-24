@@ -1,5 +1,7 @@
 package infrastructure.lhc;
 
+import infrastructure.LargeHadronCollider;
+
 public class Ring {
     private boolean isActivated;
     private Experiment currentExperiment;

@@ -1,5 +1,7 @@
 package human_resources;
 
+import infrastructure.Workplace;
+
 import java.util.ArrayList;
 
 public class ResearchGroup {
