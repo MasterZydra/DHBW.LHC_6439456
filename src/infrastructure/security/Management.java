@@ -1,3 +1,9 @@
+package infrastructure.security;
+
+import human_resources.Employee;
+import infrastructure.security.IDCard;
+import infrastructure.security.Reader;
+
 import java.util.HashMap;
 
 public enum Management {

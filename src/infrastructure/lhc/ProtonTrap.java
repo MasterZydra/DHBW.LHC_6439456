@@ -1,3 +1,5 @@
+package infrastructure.lhc;
+
 public class ProtonTrap {
     private ProtonTrapID id;
 

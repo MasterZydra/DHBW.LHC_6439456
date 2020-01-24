@@ -1,3 +1,5 @@
+package infrastructure.lhc;
+
 public class Proton {
     private int[][][] structure;
     private double weight;

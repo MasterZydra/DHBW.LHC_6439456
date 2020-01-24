@@ -1,3 +1,5 @@
+package infrastructure.energy;
+
 public class USP {
     private boolean isStandBy;
     private boolean isActivated;

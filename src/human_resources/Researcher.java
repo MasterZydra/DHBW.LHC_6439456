@@ -1,3 +1,5 @@
+package human_resources;
+
 import java.util.ArrayList;
 
 public class Researcher extends Employee {

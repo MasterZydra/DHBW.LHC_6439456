@@ -1,3 +1,5 @@
+package infrastructure.lhc;
+
 public class Ring {
     private boolean isActivated;
     private Experiment currentExperiment;

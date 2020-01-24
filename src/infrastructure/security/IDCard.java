@@ -1,3 +1,7 @@
+package infrastructure.security;
+
+import human_resources.Person;
+
 import java.util.ArrayList;
 import java.util.Date;
 

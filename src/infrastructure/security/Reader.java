@@ -1,3 +1,8 @@
+package infrastructure.security;
+
+import human_resources.Employee;
+import infrastructure.security.IDCard;
+
 public class Reader {
     private String currentEmployeeIris;
 
