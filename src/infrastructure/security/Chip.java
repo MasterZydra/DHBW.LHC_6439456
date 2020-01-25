@@ -1,5 +1,5 @@
 package infrastructure.security;
 
 public class Chip {
-    private String password;
+    private String data;
 }
