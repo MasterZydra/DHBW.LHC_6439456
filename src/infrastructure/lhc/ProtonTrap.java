@@ -1,10 +1,10 @@
 package infrastructure.lhc;
 
-public class ProtonTrap {
+public class ProtonTrap implements IProtonTrap {
     private ProtonTrapID id;
 
     private Proton[] protons;
-    private Ring ring;
+    private IRing ring;
 
     public ProtonTrap() {
         this.protons = new Proton[100];

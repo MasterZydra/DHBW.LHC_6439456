@@ -2,7 +2,7 @@ package infrastructure.lhc;
 
 import infrastructure.LargeHadronCollider;
 
-public class Ring {
+public class Ring implements IRing {
     private boolean isActivated;
     private Experiment currentExperiment;
     private int energy;

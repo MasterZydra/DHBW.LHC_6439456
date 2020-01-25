@@ -11,7 +11,7 @@ public class Detector {
     private LinkedList<Experiment> experimentList;
     private Reader reader;
 
-    private Ring ring;
+    private IRing ring;
 
     public Detector() {
         this.experimentList = new LinkedList<>();

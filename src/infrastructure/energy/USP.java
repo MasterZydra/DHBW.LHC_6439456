@@ -2,7 +2,7 @@ package infrastructure.energy;
 
 import infrastructure.LargeHadronCollider;
 
-public class USP {
+public class USP implements IUSP {
     private boolean isStandBy;
     private boolean isActivated;
 

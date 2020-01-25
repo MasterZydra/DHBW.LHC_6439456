@@ -3,10 +3,10 @@ package infrastructure.security;
 import human_resources.Employee;
 import infrastructure.security.IDCard;
 
-public class Reader {
+public class Reader implements IReader {
     private String currentEmployeeIris;
 
-    private Management management;
+    private IIDCardManagement idCardManagement;
 
     public String scanPassport(Passport passport) {
         return "";

@@ -1,11 +1,11 @@
 package infrastructure;
 
 import infrastructure.energy.USP;
-import infrastructure.lhc.Ring;
+import infrastructure.lhc.IRing;
 
 public class LargeHadronCollider {
     private Building building;
-    private Ring ring;
+    private IRing ring;
     private USP[] usps;
 
     public LargeHadronCollider() {
