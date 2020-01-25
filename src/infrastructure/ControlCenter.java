@@ -1,11 +1,13 @@
 package infrastructure;
 
-public class ControlCenter {
+public enum ControlCenter {
+    instance;
+
     private String roomID;
 
     private Workplace workplace;
 
-    public ControlCenter() {
+    ControlCenter() {
         this.roomID = "C01";
     }
 }
