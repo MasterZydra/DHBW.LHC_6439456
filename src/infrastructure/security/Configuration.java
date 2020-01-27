@@ -1,5 +1,5 @@
 package infrastructure.security;
 
-public enum Keystore {
+public enum Configuration {
     Geheim
 }
