@@ -1,12 +1,14 @@
 package infrastructure.security;
 
+import human_resources.Employee;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public enum IDCardManagement implements IIDCardManagement {
     instance;
 
-    private Map<Integer, IDCard> idCardHashMap;
+    private Map<Integer, IIDCard> idCardHashMap;
 
     private IReader reader;
 
@@ -14,11 +16,20 @@ public enum IDCardManagement implements IIDCardManagement {
         this.idCardHashMap = new HashMap<>();
     }
 
-    public void lockIDCard(IDCard idCard) {
+    public void lockIDCard(Employee employee) {
+        this.idCardHashMap.forEach((k,v) -> {
+            if (v.getPerson().equals(employee)) {
+                v.setIsLocked(Boolean.TRUE);
+                return;
+            }
+        });
+    }
+
+    public void clearIDCard(IIDCard idCard) {
 
     }
 
-    public void clearIDCard(IDCard idCard) {
-
+    public void addIDCard(IIDCard idCard) {
+        this.idCardHashMap.put(Integer.parseInt(idCard.getId()), idCard);
     }
 }

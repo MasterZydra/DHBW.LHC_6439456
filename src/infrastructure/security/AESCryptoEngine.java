@@ -19,7 +19,7 @@ public class AESCryptoEngine extends CryptoEngine {
 
     private void generateSecretKey() {
         try {
-            byte[] key = (Keystore.Geheim).toString().getBytes("UTF-8");
+            byte[] key = (Configuration.Geheim).toString().getBytes("UTF-8");
             MessageDigest sha = MessageDigest.getInstance("SHA-256");
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
