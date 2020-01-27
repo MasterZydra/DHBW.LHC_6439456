@@ -1,5 +1,7 @@
 package human_resources;
 
+import infrastructure.lhc.IRODetector;
+
 import java.util.ArrayList;
 
 public class Researcher extends Employee {
@@ -7,7 +9,18 @@ public class Researcher extends Employee {
 
     private ArrayList<ResearchGroup> researchGroups;
 
-    public Researcher() {
+    private IRODetector detector;
+
+    public Researcher(int id, String name) {
+        super(id, name);
         this.researchGroups = new ArrayList<>();
+    }
+
+    public void setDetector(IRODetector detector) {
+        this.detector = detector;
+    }
+
+    public IRODetector getDetector() {
+        return this.detector;
     }
 }

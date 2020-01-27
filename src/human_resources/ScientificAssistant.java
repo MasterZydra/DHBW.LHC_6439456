@@ -9,7 +9,8 @@ public class ScientificAssistant extends Employee {
 
     private ArrayList<ResearchGroup> researchGroups;
 
-    public ScientificAssistant() {
+    public ScientificAssistant(int id, String name) {
+        super(id, name);
         this.researchGroups = new ArrayList<>();
     }
 }

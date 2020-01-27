@@ -1,7 +1,6 @@
 package human_resources;
 
 import infrastructure.security.IDCard;
-import infrastructure.security.IReader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +10,26 @@ public enum EmployeeManagement implements IEmployeeManagement {
 
     private Map<Integer, Employee> employeeMap;
 
+    private int employeeID;
+
     EmployeeManagement() {
         this.employeeMap = new HashMap<>();
     }
 
-    public void createEmployee(String name) {
+    public void createEmployee(String name, String type) throws Exception {
+        Employee employee;
+        switch (type) {
+            case "SecurityOfficer":
+                employee = new SecurityOfficer(this.employeeID, name);
+                break;
+            case "Researcher":
+                employee = new Researcher(this.employeeID, name);
+                break;
+            default: throw new Exception("EmployeeManagement: Employee type not supported!");
+        }
+        this.employeeMap.put(this.employeeID, employee);
 
+        this.employeeID++;
     }
 
     public void assignIDCard(IDCard idCard, Employee employee) {
@@ -24,6 +37,8 @@ public enum EmployeeManagement implements IEmployeeManagement {
     }
 
     public void viewEmployeeData() {
-
+        this.employeeMap.forEach((k,v) -> {
+            System.out.println(v);
+        });
     }
 }
