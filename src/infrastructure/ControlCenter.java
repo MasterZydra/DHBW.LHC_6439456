@@ -3,7 +3,7 @@ package infrastructure;
 public enum ControlCenter {
     instance;
 
-    private String roomID;
+    private final String roomID;
 
     private Workplace workplace;
 

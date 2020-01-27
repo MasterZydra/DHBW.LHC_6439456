@@ -1,13 +1,8 @@
 package infrastructure;
 
 public class Building {
-    private String owner;
-    private String location;
+    private final String owner = "CERN";
+    private final String location = "Geneva";
 
     private LargeHadronCollider largeHadronCollider;
-
-    public Building() {
-        this.owner = "CERN";
-        this.location = "Geneva";
-    }
 }
