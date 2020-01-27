@@ -10,7 +10,7 @@ public enum Reception implements IReception {
 
     private IIDCardManagement idCardManagement;
     private IReceptionStaff receptionStaff;
-    private Stack<IDCard> blankIDCards;
+    private Stack<IIDCard> blankIDCards;
     private IWriter writer;
 
     Reception() {
@@ -31,7 +31,7 @@ public enum Reception implements IReception {
         return this.receptionStaff;
     }
 
-    public IDCard getBlankIDCard() {
+    public IIDCard getBlankIDCard() {
         return this.blankIDCards.pop();
     }
 

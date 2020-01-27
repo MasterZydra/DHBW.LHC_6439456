@@ -1,6 +1,6 @@
 package infrastructure.lhc;
 
-import infrastructure.security.Reader;
+import infrastructure.security.IReader;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +9,7 @@ public class Detector implements IRODetector {
     private static String higgsBosonStructure = "higgs";
     private boolean isActivated;
     private List<Experiment> experimentList;
-    private Reader reader;
+    private IReader reader;
 
     private IRing ring;
 

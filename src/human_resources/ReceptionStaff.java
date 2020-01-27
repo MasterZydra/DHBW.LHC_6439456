@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class ReceptionStaff extends Employee implements IReceptionStaff {
     private IReception reception;
-    private IDCard currentIDCard;
+    private IIDCard currentIDCard;
     private Visitor currentVisitor;
 
     public ReceptionStaff(int id, String name) {

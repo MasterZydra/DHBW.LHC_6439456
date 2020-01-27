@@ -6,7 +6,7 @@ import infrastructure.security.*;
 public interface IReception {
     void setReceptionStaff(IReceptionStaff receptionStaff);
     IReceptionStaff getReceptionStaff();
-    IDCard getBlankIDCard();
+    IIDCard getBlankIDCard();
     IWriter getWriter();
     void addVisitorIDCard(IIDCard idCard);
 }
