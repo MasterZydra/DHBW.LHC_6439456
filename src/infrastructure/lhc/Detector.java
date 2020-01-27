@@ -1,19 +1,29 @@
 package infrastructure.lhc;
 
-import infrastructure.lhc.Ring;
 import infrastructure.security.Reader;
 
 import java.util.LinkedList;
+import java.util.List;
 
-public class Detector {
+public class Detector implements IRODetector {
     private static String higgsBosonStructure = "higgs";
     private boolean isActivated;
-    private LinkedList<Experiment> experimentList;
+    private List<Experiment> experimentList;
     private Reader reader;
 
     private IRing ring;
 
     public Detector() {
         this.experimentList = new LinkedList<>();
+    }
+
+    public void viewExperiments() {
+        for(Experiment experiment : this.experimentList) {
+            System.out.println(experiment);
+        }
+    }
+
+    public void addExperiment(Experiment experiment) {
+        this.experimentList.add(experiment);
     }
 }
