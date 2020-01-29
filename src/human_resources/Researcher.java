@@ -1,6 +1,6 @@
 package human_resources;
 
-import infrastructure.lhc.IRODetector;
+import infrastructure.lhc.detector.IRODetector;
 
 import java.util.ArrayList;
 
