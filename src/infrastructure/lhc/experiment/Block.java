@@ -1,4 +1,4 @@
-package infrastructure.lhc;
+package infrastructure.lhc.experiment;
 
 import infrastructure.lhc.experiment.IBlock;
 

@@ -1,7 +1,5 @@
 package infrastructure.lhc.experiment;
 
-import infrastructure.lhc.Block;
-
 import java.util.Date;
 import java.util.UUID;
 
