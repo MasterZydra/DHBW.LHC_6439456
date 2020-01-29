@@ -1,2 +1,11 @@
+# macOS files
 .DS_Store
+
+# All Output files
 out/*
+*/out/*
+
+# IntelliJ
+uiDesigner.xml
+
+*/build/*
