@@ -1,6 +1,10 @@
 import human_resources.*;
 import infrastructure.*;
-import infrastructure.lhc.*;
+import infrastructure.lhc.Proton;
+import infrastructure.lhc.ProtonTrap;
+import infrastructure.lhc.ProtonTrapID;
+import infrastructure.lhc.detector.Detector;
+import infrastructure.lhc.experiment.Experiment;
 import infrastructure.security.*;
 
 public class Main {
@@ -12,6 +16,7 @@ public class Main {
         lockIDCard();
         readerCheckAccessForVisitor();
         readerCheckAccessForEmployee();
+        protonTrap();
     }
 
     public static void createVisitorIDCard() {
@@ -94,8 +99,8 @@ public class Main {
         ISecurityOfficer securityOfficer1 = securityCenter.getSecurityOfficer();
         securityOfficer1.createIDCard(employee);
 
-        IReader reader = new Reader();
-        reader.insertIDCard(employee.getIdCard());
+        EmployeeReader reader = new EmployeeReader();
+        reader.insertIDCard((EmployeeIDCard) employee.getIdCard());
         if (reader.verifyPassword("helloLHC2020")) {
             System.out.println("Verified");
         }
@@ -124,8 +129,8 @@ public class Main {
         IReceptionStaff receptionStaff1 = reception.getReceptionStaff();
         receptionStaff1.createIDCard(visitor);
 
-        IReader reader = new Reader();
-        reader.insertIDCard(visitor.getIdCard());
+        VisitorReader reader = new VisitorReader();
+        reader.insertIDCard((VisitorIDCard) visitor.getIdCard());
         if (reader.verifyPassword("12345")) {
             System.out.println("Verified");
         }
@@ -139,5 +144,10 @@ public class Main {
             System.out.println("NOT verified");
         }
         reader.removeIDCard();
+    }
+
+    public static void protonTrap() {
+        ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A, false);
+        ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B, true);
     }
 }
