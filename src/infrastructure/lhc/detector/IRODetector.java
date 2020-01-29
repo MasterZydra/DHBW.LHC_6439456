@@ -1,4 +1,4 @@
-package infrastructure.lhc;
+package infrastructure.lhc.detector;
 
 public interface IRODetector {
     void viewExperiments();
