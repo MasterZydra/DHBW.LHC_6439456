@@ -1,5 +1,7 @@
 package infrastructure.security;
 
+import infrastructure.Configuration;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
@@ -8,7 +10,6 @@ import java.util.Arrays;
 import java.util.Base64;
 
 public class AESCryptoEngine extends CryptoEngine {
-    private final String secretPwd = "SehrSehrSicher";
     private Key secretKey;
 
     // Source for code: https://blog.axxg.de/java-aes-verschluesselung-mit-beispiel/
@@ -19,7 +20,7 @@ public class AESCryptoEngine extends CryptoEngine {
 
     private void generateSecretKey() {
         try {
-            byte[] key = (Configuration.Geheim).toString().getBytes("UTF-8");
+            byte[] key = (Configuration.instance.AESKey).getBytes("UTF-8");
             MessageDigest sha = MessageDigest.getInstance("SHA-256");
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
