@@ -2,7 +2,7 @@ package infrastructure.security;
 
 import human_resources.Employee;
 
-public class Reader implements IReader {
+public abstract class Reader implements IReader {
     private String currentEmployeeIris;
 
     private IIDCardManagement idCardManagement;
@@ -25,21 +25,11 @@ public class Reader implements IReader {
         this.currentIDCard = null;
     }
 
-    public boolean verifyPassword(String input) {
+    public abstract boolean verifyPassword(String input);
+
+    protected boolean checkPassword(String input, String cardData) {
         CryptoEngine cryptoEngine = new AESCryptoEngine();
         input = cryptoEngine.encrypt(input);
-
-        if (this.currentIDCard instanceof VisitorIDCard) {
-            VisitorIDCard idCard = (VisitorIDCard) this.currentIDCard;
-            return idCard.getData().equals(input);
-        }
-
-        if (this.currentIDCard instanceof EmployeeIDCard) {
-            EmployeeIDCard idCard = (EmployeeIDCard) this.currentIDCard;
-            return idCard.getData().equals(input);
-        }
-
-        // Exception
-        return false;
+        return cardData.equals(input);
     }
 }
