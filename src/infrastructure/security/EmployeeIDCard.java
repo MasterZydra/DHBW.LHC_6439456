@@ -1,7 +1,5 @@
 package infrastructure.security;
 
-import human_resources.Person;
-
 public class EmployeeIDCard extends IDCard {
     private IChip fingerPrintChip;
     private IChip passwordChip;
@@ -12,11 +10,8 @@ public class EmployeeIDCard extends IDCard {
         this.passwordChip = new Chip();
     }
 
-    public String getData() {
-        return this.passwordChip.toString();
-    }
-
     public void setPassword(String password) {
         this.passwordChip.setData(password);
+        this.communication.setData(password);
     }
 }
