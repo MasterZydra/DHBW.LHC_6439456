@@ -11,7 +11,7 @@ import java.util.Queue;
 public class ProtonTrap implements IProtonTrap {
     private ProtonTrapID id;
 
-    private Queue<Proton> protons;
+    private Queue<IProton> protons;
     private IRing ring;
 
     public ProtonTrap(ProtonTrapID trapID) {
