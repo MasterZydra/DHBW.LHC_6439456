@@ -15,6 +15,7 @@ public class Main {
         readerCheckAccessForVisitor();
         readerCheckAccessForEmployee();
         protonTrap();
+        eventBusTest();
     }
 
     public static void createVisitorIDCard() {
@@ -144,8 +145,26 @@ public class Main {
         reader.removeIDCard();
     }
 
-    public static void protonTrap() {
-        ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A, false);
-        ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B, true);
+    public static void eventBusTest() {
+        System.out.println("\n---------- eventBusTest() ----------");
+        ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
+        ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
+
+        Detector detector = new Detector();
+
+        Ring ring = new Ring();
+        ring.setProtonTraps(protonTrap1, protonTrap2);
+        ring.setDetector(detector);
+
+        ControlCenter controlCenter = ControlCenter.instance;
+
+        controlCenter.addSubscriber(ring);
+        controlCenter.addSubscriber(detector);
+
+        //controlCenter.startExperiment(ExperimentScope.ESFull);
+        controlCenter.startExperiment();
+
+        // Test output
+        //detector.viewExperiments();
     }
 }
