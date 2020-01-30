@@ -31,7 +31,7 @@ public enum ControlCenter implements IControlCenter {
     }
 
     public void startExperiment(ExperimentScope scope) {
-        eventBus.post(new RunExperimentPartialEvent(50));
+        eventBus.post(new RunExperimentPartialEvent(50, scope));
         eventBus.post(new AnalyseEvent());
     }
 }
