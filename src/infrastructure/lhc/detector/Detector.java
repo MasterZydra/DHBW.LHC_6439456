@@ -21,6 +21,8 @@ public class Detector extends Subscriber implements IDetector {
     private List<IExperiment> experimentList;
     private IReader reader;
 
+    private Instant start;
+
     private IRing ring;
 
     private Method searchString;
@@ -59,13 +61,21 @@ public class Detector extends Subscriber implements IDetector {
     }
 
     private void search(IExperiment experiment) {
-        for (int i = 0; i < 20000; i++) {
+        for (int i = 0; i < 200000; i++) {
             String hayStack = experiment.getBlock(i).getStructure();
             try {
                 int pos = (Integer) this.searchString.invoke(this.port, hayStack, higgsBosonStructure);
 
                 if (pos != -1) {
+                    // Analysis time
+                    Instant end = Instant.now();
+                    long analyseTime = Duration.between(this.start, end).toMillis();
+
                     experiment.setHiggsBosonFound();
+
+                    System.out.println(experiment + " -  Block-ID: " + Integer.toString(i) + " - "
+                        + hayStack + " - Analyse-Time " + Long.toString(analyseTime) + " ms");
+
                     return;
                 }
 
@@ -74,12 +84,13 @@ public class Detector extends Subscriber implements IDetector {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     @Subscribe
     public void receive(AnalyseEvent event) {
-
+        start = Instant.now();
+        for(IExperiment experiment : this.experimentList) {
+            this.search(experiment);
+        }
     }
 }
