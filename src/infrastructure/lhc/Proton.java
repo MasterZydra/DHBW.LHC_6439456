@@ -1,6 +1,6 @@
 package infrastructure.lhc;
 
-public class Proton {
+public class Proton implements IProton {
     private int id;
     private int[][][] structure;
     private double weight;
