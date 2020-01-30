@@ -14,7 +14,6 @@ public class Main {
         lockIDCard();
         readerCheckAccessForVisitor();
         readerCheckAccessForEmployee();
-        protonTrap();
         eventBusTest();
     }
 
