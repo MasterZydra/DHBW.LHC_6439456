@@ -1,10 +1,8 @@
 import human_resources.*;
 import infrastructure.*;
-import infrastructure.lhc.Proton;
-import infrastructure.lhc.ProtonTrap;
-import infrastructure.lhc.ProtonTrapID;
-import infrastructure.lhc.detector.Detector;
-import infrastructure.lhc.experiment.Experiment;
+import infrastructure.lhc.*;
+import infrastructure.lhc.detector.*;
+import infrastructure.lhc.experiment.*;
 import infrastructure.security.*;
 
 public class Main {
