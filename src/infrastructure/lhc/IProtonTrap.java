@@ -1,6 +1,6 @@
 package infrastructure.lhc;
 
 public interface IProtonTrap {
-    void loadData(String dataFilePath);
-    void release();
+    void loadData(int id, String dataFilePath);
+    IProton release();
 }
