@@ -24,4 +24,12 @@ public class USP implements IUSP {
     public int takeOut() {
         return 0;
     }
+
+    public void setBatteries(Battery[] batteries) throws Exception {
+        if (batteries.length != 25)
+            throw new Exception("Invalid amount of batteries. 25 batteries expected");
+
+        for (int i = 0; i < 25; i++)
+            this.batteries[i] = batteries[i];
+    }
 }
