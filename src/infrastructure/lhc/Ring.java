@@ -1,6 +1,7 @@
 package infrastructure.lhc;
 
 import com.google.common.eventbus.Subscribe;
+import infrastructure.ILargeHadronCollider;
 import infrastructure.LargeHadronCollider;
 import infrastructure.lhc.detector.*;
 import infrastructure.lhc.experiment.*;
@@ -11,17 +12,17 @@ public class Ring extends Subscriber implements IRing {
     private int energy;
 
     private IMagnet[] magnets;
-    private ProtonTrap[] protonTraps;
+    private IProtonTrap[] protonTraps;
     private IDetector detector;
-    private LargeHadronCollider lhc;
+    private ILargeHadronCollider lhc;
 
     private IProton proton1;
     private IProton proton2;
 
     public Ring() {
         super();
-        this.protonTraps = new ProtonTrap[2];
-        this.magnets = new Magnet[72];
+        this.protonTraps = new IProtonTrap[2];
+        this.magnets = new IMagnet[72];
         for (int i = 0; i < 72; i++) {
             this.magnets[i] = new Magnet();
         }
@@ -29,6 +30,10 @@ public class Ring extends Subscriber implements IRing {
 
     public void setDetector(IDetector detector) {
         this.detector = detector;
+    }
+
+    public void setLargeHadronCollider(ILargeHadronCollider largeHadronCollider) {
+        this.lhc = largeHadronCollider;
     }
 
     public void setProtonTraps(ProtonTrap protonTrap1, ProtonTrap protonTrap2) {
