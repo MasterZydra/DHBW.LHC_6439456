@@ -32,7 +32,7 @@ public class AESCryptoEngine extends CryptoEngine {
     }
 
     @Override
-    String encrypt(String rawData) {
+    public String encrypt(String rawData) {
         try {
             // Encode
             Cipher cipher = Cipher.getInstance("AES");
@@ -48,7 +48,7 @@ public class AESCryptoEngine extends CryptoEngine {
     }
 
     @Override
-    String decrypt(String hashData) {
+    public String decrypt(String hashData) {
         try {
             // Base64-String to Bytes
             byte[] crypted = Base64.getDecoder().decode(hashData);

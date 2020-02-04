@@ -5,7 +5,7 @@ import java.util.Base64;
 
 public class MD5HashEngine extends HashEngine {
     @Override
-    String hash(String rawData) {
+    public String hash(String rawData) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(rawData.getBytes());
