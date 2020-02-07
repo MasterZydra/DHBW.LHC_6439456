@@ -1,9 +1,9 @@
-import human_resources.*;
-import infrastructure.*;
-import infrastructure.lhc.*;
-import infrastructure.lhc.detector.*;
-import infrastructure.lhc.experiment.*;
-import infrastructure.security.*;
+import main.human_resources.*;
+import main.infrastructure.*;
+import main.infrastructure.lhc.*;
+import main.infrastructure.lhc.detector.*;
+import main.infrastructure.lhc.experiment.*;
+import main.infrastructure.security.*;
 
 public class Main {
     public static void main(String[] args) {
