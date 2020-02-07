@@ -16,15 +16,26 @@ public class SecurityOfficer extends Employee implements ISecurityOfficer {
         super(id, name);
     }
 
-    public void createIDCard(Employee employee) {
+    public void createIDCard(Employee employee, EmployeeType type) {
         this.currentIDCard = this.securityCenter.getBlankIDCard();
 
         Date validFrom = new Date();
         Date validUntil = new Date(validFrom.getTime() + (1000 * 60 * 60 * 24 * 365));
 
         ArrayList<Permission> permissions = new ArrayList<>();
-        //permissions.add(Permission.Researcher);
-        // TODO Permission setzen
+        switch (type) {
+            case SECURITY_OFFICER:
+                permissions.add(Permission.ControlCenter);
+                permissions.add(Permission.Security);
+                break;
+            case SCIENTIFIC_ASSISTANT:
+                permissions.add(Permission.ControlCenter);
+                break;
+            case RESEARCHER:
+                permissions.add(Permission.ControlCenter);
+                permissions.add(Permission.Researcher);
+                break;
+        }
 
         IWriter writer = this.securityCenter.getWriter();
         writer.setIDCard(this.currentIDCard);

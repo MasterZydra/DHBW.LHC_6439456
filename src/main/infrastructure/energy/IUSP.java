@@ -5,4 +5,5 @@ public interface IUSP {
     void charge(ThreePinPlug plug);
     int takeOut();
     void setBatteries(Battery[] batteries) throws Exception;
+    Battery[] getBatteries();
 }

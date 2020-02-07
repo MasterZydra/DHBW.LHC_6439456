@@ -7,4 +7,5 @@ public interface IReader {
     void insertIDCard(IIDCard idCard);
     void removeIDCard();
     boolean verifyPassword(String input);
+    IIDCard getCurrentIDCard();
 }

@@ -1,6 +1,6 @@
 package main.infrastructure.security;
 
-import main.human_resources.Person;
+import main.human_resources.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,18 +14,21 @@ public abstract class IDCard implements IIDCard {
     private boolean isLocked;
     protected ICommunication communication;
 
-    private Person person;
+    private int invalidPasswordCounter;
+
+    private IPerson person;
 
     public IDCard(String id) {
         this.id = id;
         this.communication = new RFID();
+        invalidPasswordCounter = 0;
     }
 
     public String getId() {
         return this.id;
     }
 
-    public Person getPerson() {
+    public IPerson getPerson() {
         return this.person;
     }
 
@@ -45,7 +48,7 @@ public abstract class IDCard implements IIDCard {
         this.permissionList = permissionList;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(IPerson person) {
         this.person = person;
     }
 
@@ -59,5 +62,38 @@ public abstract class IDCard implements IIDCard {
 
     public void setCommunication(ICommunication communication) {
         this.communication = communication;
+    }
+
+    public Date getValidFrom() {
+        return validFrom;
+    }
+
+    public Date getValidUntil(){
+        return validUntil;
+    }
+
+    public int[][] getIrisStructure() {
+        return irisStructure;
+    }
+
+    public boolean getIsLocked() {
+        return isLocked;
+    }
+
+    public ArrayList<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void increaseInvalidPasswordCounter() {
+        invalidPasswordCounter++;
+    }
+
+    public void resetInvalidPasswordCounter() {
+        invalidPasswordCounter = 0;
+    }
+
+    public int getInvalidPasswordCounter()
+    {
+        return invalidPasswordCounter;
     }
 }

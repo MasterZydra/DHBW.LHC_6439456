@@ -12,11 +12,12 @@ public enum ControlCenter implements IControlCenter {
 
     private EventBus eventBus;
 
-    private Workplace workplace;
+    private IWorkplace[] workplaces;
 
     ControlCenter() {
         this.roomID = "C01";
         this.eventBus = new EventBus(this.roomID);
+        workplaces = new IWorkplace[3];
     }
 
     public void addSubscriber(Subscriber subscriber) {
@@ -31,5 +32,13 @@ public enum ControlCenter implements IControlCenter {
     public void startExperiment(ExperimentScope scope) {
         eventBus.post(new RunExperimentPartialEvent(50, scope));
         eventBus.post(new AnalyseEvent());
+    }
+
+    public IWorkplace[] getWorkplaces() {
+        return workplaces;
+    }
+
+    public void setWorkplaces(IWorkplace[] workplaces) {
+        this.workplaces = workplaces;
     }
 }

@@ -7,4 +7,6 @@ public interface IControlCenter {
     void addSubscriber(Subscriber subscriber);
     void startExperiment();
     void startExperiment(ExperimentScope scope);
+    void setWorkplaces(IWorkplace[] workplaces);
+    IWorkplace[] getWorkplaces();
 }
