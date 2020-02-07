@@ -31,7 +31,6 @@ public class Detector extends Subscriber implements IDetector {
     public Detector() {
         super();
         this.experimentList = new LinkedList<>();
-        this.createSearchMethod();
     }
 
     public void viewExperiments() {
@@ -61,6 +60,7 @@ public class Detector extends Subscriber implements IDetector {
     }
 
     private void search(IExperiment experiment) {
+        this.createSearchMethod();
         for (int i = 0; i < 200000; i++) {
             String hayStack = experiment.getBlock(i).getStructure();
             try {
