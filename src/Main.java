@@ -1,5 +1,6 @@
 import main.human_resources.*;
 import main.infrastructure.*;
+import main.infrastructure.energy.*;
 import main.infrastructure.lhc.*;
 import main.infrastructure.lhc.detector.*;
 import main.infrastructure.lhc.experiment.*;
@@ -15,6 +16,38 @@ public class Main {
         readerCheckAccessForVisitor();
         readerCheckAccessForEmployee();
         eventBusTest();
+    }
+
+    public static void buildEnvironment() {
+        try {
+            IBuilding building = new Building();
+            ILargeHadronCollider largeHadronCollider = new LargeHadronCollider();
+            building.setLargeHadronCollider(largeHadronCollider);
+            largeHadronCollider.setBuilding(building);
+
+            IRing ring = new Ring();
+            ring.setLargeHadronCollider(largeHadronCollider);
+            largeHadronCollider.setRing(ring);
+
+            IUSP usp1 = new USP();
+            IUSP usp2 = new USP();
+            largeHadronCollider.setUSPs(usp1, usp2);
+
+            Battery[] batteries1 = new Battery[25];
+            for (int i = 0; i < 25; i++) {
+                batteries1[i] = new Battery();
+            }
+            Battery[] batteries2 = new Battery[25];
+            for (int i = 0; i < 25; i++) {
+                batteries2[i] = new Battery();
+            }
+
+            usp1.setBatteries(batteries1);
+            usp2.setBatteries(batteries2);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void createVisitorIDCard() {
