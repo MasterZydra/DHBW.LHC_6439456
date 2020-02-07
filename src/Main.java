@@ -18,6 +18,38 @@ public class Main {
         eventBusTest();
     }
 
+    public static void buildEnvironment() {
+        try {
+            IBuilding building = new Building();
+            ILargeHadronCollider largeHadronCollider = new LargeHadronCollider();
+            building.setLargeHadronCollider(largeHadronCollider);
+            largeHadronCollider.setBuilding(building);
+
+            IRing ring = new Ring();
+            ring.setLargeHadronCollider(largeHadronCollider);
+            largeHadronCollider.setRing(ring);
+
+            IUSP usp1 = new USP();
+            IUSP usp2 = new USP();
+            largeHadronCollider.setUSPs(usp1, usp2);
+
+            Battery[] batteries1 = new Battery[25];
+            for (int i = 0; i < 25; i++) {
+                batteries1[i] = new Battery();
+            }
+            Battery[] batteries2 = new Battery[25];
+            for (int i = 0; i < 25; i++) {
+                batteries2[i] = new Battery();
+            }
+
+            usp1.setBatteries(batteries1);
+            usp2.setBatteries(batteries2);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void createVisitorIDCard() {
         // Erstellung einer ID-Karte für Besucher durch die Rezeption
         IReception reception = Reception.instance;
