@@ -194,7 +194,7 @@ public class Main {
         controlCenter.addSubscriber(detector);
 
         //controlCenter.startExperiment(ExperimentScope.ESFull);
-        controlCenter.startExperiment();
+        controlCenter.startExperiment(50);
 
         // Test output
         //detector.viewExperiments();

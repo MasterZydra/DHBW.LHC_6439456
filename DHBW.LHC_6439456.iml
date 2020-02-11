@@ -15,5 +15,6 @@
     <orderEntry type="library" name="junit_platform_launcher" level="project" />
     <orderEntry type="library" name="junit_platform_runner" level="project" />
     <orderEntry type="library" name="opentest4j" level="project" />
+    <orderEntry type="library" name="junit_parameter" level="project" />
   </component>
 </module>

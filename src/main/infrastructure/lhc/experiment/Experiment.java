@@ -49,4 +49,9 @@ public class Experiment implements IExperiment {
         this.protonIDs[0] = protonId1;
         this.protonIDs[1] = protonId2;
     }
+
+    public boolean getHiggsBosonFound()
+    {
+        return this.isHiggsBosonFound;
+    }
 }

@@ -24,13 +24,13 @@ public enum ControlCenter implements IControlCenter {
         eventBus.register(subscriber);
     }
 
-    public void startExperiment() {
-        eventBus.post(new RunExperimentFullEvent(50));
+    public void startExperiment(int initialEnergy) {
+        eventBus.post(new RunExperimentFullEvent(initialEnergy));
         eventBus.post(new AnalyseEvent());
     }
 
-    public void startExperiment(ExperimentScope scope) {
-        eventBus.post(new RunExperimentPartialEvent(50, scope));
+    public void startExperiment(int initialEnergy, ExperimentScope scope) {
+        eventBus.post(new RunExperimentPartialEvent(initialEnergy, scope));
         eventBus.post(new AnalyseEvent());
     }
 
