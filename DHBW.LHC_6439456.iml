@@ -7,14 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="guava" level="project" />
-    <orderEntry type="library" name="junit_api" level="project" />
-    <orderEntry type="library" name="junit_platform_commons" level="project" />
-    <orderEntry type="library" name="junit_platform_engine" level="project" />
-    <orderEntry type="library" name="junit_platform_engine" level="project" />
-    <orderEntry type="library" name="junit_platform_launcher" level="project" />
-    <orderEntry type="library" name="junit_platform_runner" level="project" />
-    <orderEntry type="library" name="opentest4j" level="project" />
-    <orderEntry type="library" name="junit_parameter" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
