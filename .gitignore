@@ -1,6 +1,9 @@
 # macOS files
 .DS_Store
 
+# Database files
+dataBase/
+
 # All Output files
 out/*
 */out/*
