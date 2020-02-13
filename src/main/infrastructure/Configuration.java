@@ -7,8 +7,14 @@ public enum Configuration {
     public String AESKey = "Geheim";
     public SearchAlgorithm searchAlgorithm = SearchAlgorithm.Native;
     // Pathes for search algorithms
-    public String fs = System.getProperty("file.separator");
-    public String ud = System.getProperty("user.dir");
+    public final String fs = System.getProperty("file.separator");
+    public final String ud = System.getProperty("user.dir");
+
+
+    public final String dataBaseDir = ud + fs + "dataBase" + fs;
+    public final String dataBaseFile = dataBaseDir + "dataStore.db";
+    public String username = "sa";
+    public String password = "";
 
     public String protonData = ud + fs + "data" + fs;
 
