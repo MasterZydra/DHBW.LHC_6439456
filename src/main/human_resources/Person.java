@@ -1,13 +1,16 @@
 package main.human_resources;
 
+import main.infrastructure.security.HashEngine;
 import main.infrastructure.security.IIDCard;
+import main.infrastructure.security.MD5HashEngine;
 
 import java.util.Random;
 
-public abstract class Person implements IPerson{
+public abstract class Person implements IPerson {
     protected int id;
     protected String name;
     protected int[][] iris;
+    protected String fingerPrint;
 
     protected IIDCard idCard;
 
@@ -23,6 +26,14 @@ public abstract class Person implements IPerson{
                 this.iris[i][j] = random.nextInt();
             }
         }
+
+        HashEngine engine = new MD5HashEngine();
+
+        this.fingerPrint = engine.hash(this.name);
+    }
+
+    public String getFingerPrint() {
+        return this.fingerPrint;
     }
 
     public void setIDCard(IIDCard idCard) {
@@ -45,6 +56,10 @@ public abstract class Person implements IPerson{
 
     public int[][] getIris() {
         return iris;
+    }
+
+    public int getID() {
+        return this.id;
     }
 
     @Override

@@ -9,4 +9,6 @@ public interface IPerson
     String enterPassword();
     IIDCard getIdCard();
     int[][] getIris();
+    String getFingerPrint();
+    int getID();
 }
