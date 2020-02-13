@@ -5,4 +5,6 @@ public interface IExperiment {
     void setHiggsBosonFound();
     void setProtonIDs(int protonId1, int protonId2);
     boolean getHiggsBosonFound();
+    String getSQLString();
+    String getID();
 }

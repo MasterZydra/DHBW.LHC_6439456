@@ -54,4 +54,16 @@ public class Experiment implements IExperiment {
     {
         return this.isHiggsBosonFound;
     }
+
+    public String getSQLString() {
+        String ret = "'" + this.uuid.toString() + "', '" + this.dateTimeStamp + "', ";
+        ret += this.isHiggsBosonFound;
+        ret += ", ";
+        ret += this.protonIDs[0] + ", " + this.protonIDs[1];
+        return ret;
+    }
+
+    public String getID() {
+        return this.uuid.toString();
+    }
 }
