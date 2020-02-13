@@ -4,7 +4,7 @@ import main.infrastructure.security.IIDCard;
 
 import java.util.Random;
 
-public abstract class Person {
+public abstract class Person implements IPerson{
     protected int id;
     protected String name;
     protected int[][] iris;
@@ -41,6 +41,10 @@ public abstract class Person {
 
     public IIDCard getIdCard() {
         return this.idCard;
+    }
+
+    public int[][] getIris() {
+        return iris;
     }
 
     @Override

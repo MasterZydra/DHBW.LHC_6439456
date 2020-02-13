@@ -9,7 +9,6 @@ public enum Configuration {
     // Pathes for search algorithms
     public String fs = System.getProperty("file.separator");
     public String ud = System.getProperty("user.dir");
-    public String pathToJar = getSearchAlgorithmPath();
 
     public String protonData = ud + fs + "data" + fs;
 
@@ -23,6 +22,4 @@ public enum Configuration {
         }
         return path;
     }
-
-
 }

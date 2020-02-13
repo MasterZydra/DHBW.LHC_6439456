@@ -24,4 +24,14 @@ public class LargeHadronCollider implements ILargeHadronCollider {
         this.usps[0] = usp1;
         this.usps[1] = usp2;
     }
+
+    public IRing getRing()
+    {
+        return ring;
+    }
+
+    public IUSP[] getUSPs()
+    {
+        return usps;
+    }
 }

@@ -32,4 +32,8 @@ public class USP implements IUSP {
         for (int i = 0; i < 25; i++)
             this.batteries[i] = batteries[i];
     }
+
+    public Battery[] getBatteries() {
+        return this.batteries;
+    }
 }

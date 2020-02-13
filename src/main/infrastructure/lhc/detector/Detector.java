@@ -43,10 +43,20 @@ public class Detector extends Subscriber implements IDetector {
         this.experimentList.add(experiment);
     }
 
+    public Object getPort()
+    {
+        return port;
+    }
+
+    public List<IExperiment> getExperimentList()
+    {
+        return this.experimentList;
+    }
+
     private void createSearchMethod() {
         Object instance;
         try {
-            URL[] urls = {new File(Configuration.instance.pathToJar).toURI().toURL()};
+            URL[] urls = {new File(Configuration.instance.getSearchAlgorithmPath()).toURI().toURL()};
             URLClassLoader urlClassLoader = new URLClassLoader(urls, Detector.class.getClassLoader());
             Class clazz = Class.forName(Configuration.instance.searchAlgorithm.toString(), true, urlClassLoader);
 
@@ -60,7 +70,6 @@ public class Detector extends Subscriber implements IDetector {
     }
 
     private void search(IExperiment experiment) {
-        this.createSearchMethod();
         for (int i = 0; i < 200000; i++) {
             String hayStack = experiment.getBlock(i).getStructure();
             try {
@@ -88,6 +97,7 @@ public class Detector extends Subscriber implements IDetector {
 
     @Subscribe
     public void receive(AnalyseEvent event) {
+        this.createSearchMethod();
         start = Instant.now();
         for(IExperiment experiment : this.experimentList) {
             this.search(experiment);

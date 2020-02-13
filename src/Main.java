@@ -72,7 +72,7 @@ public class Main {
         Employee employee = new ScientificAssistant(1, "Anton Assistent");
 
         ISecurityOfficer securityOfficer1 = securityCenter.getSecurityOfficer();
-        securityOfficer1.createIDCard(employee);
+        securityOfficer1.createIDCard(employee, EmployeeType.SCIENTIFIC_ASSISTANT);
     }
 
     public static void researcherAccessesDetector() {
@@ -112,8 +112,8 @@ public class Main {
         Employee employee1 = new HRAssistant(2, "Peter Personaler");
 
         ISecurityOfficer securityOfficer1 = securityCenter.getSecurityOfficer();
-        securityOfficer1.createIDCard(employee);
-        securityOfficer1.createIDCard(employee1);
+        securityOfficer1.createIDCard(employee, EmployeeType.SCIENTIFIC_ASSISTANT);
+        securityOfficer1.createIDCard(employee1, EmployeeType.DEFAULT_EMPLOYEE);
 
         securityCenter.lockEmployeeIdCard(employee);
     }
@@ -128,7 +128,7 @@ public class Main {
         Employee employee = new ScientificAssistant(1, "Anton Assistent");
 
         ISecurityOfficer securityOfficer1 = securityCenter.getSecurityOfficer();
-        securityOfficer1.createIDCard(employee);
+        securityOfficer1.createIDCard(employee, EmployeeType.SCIENTIFIC_ASSISTANT);
 
         EmployeeReader reader = new EmployeeReader();
         reader.insertIDCard((EmployeeIDCard) employee.getIdCard());
@@ -194,7 +194,7 @@ public class Main {
         controlCenter.addSubscriber(detector);
 
         //controlCenter.startExperiment(ExperimentScope.ESFull);
-        controlCenter.startExperiment();
+        controlCenter.startExperiment(50);
 
         // Test output
         //detector.viewExperiments();
