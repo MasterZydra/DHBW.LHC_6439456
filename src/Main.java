@@ -16,6 +16,37 @@ public class Main {
         readerCheckAccessForVisitor();
         readerCheckAccessForEmployee();
         eventBusTest();
+        buildEnvironment();
+        createDB();
+    }
+
+    public static void createDB() {
+        System.out.println("\n---------- createDB() ----------");
+        ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
+        ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
+
+        Detector detector = new Detector();
+
+        Ring ring = new Ring();
+        ring.setProtonTraps(protonTrap1, protonTrap2);
+        ring.setDetector(detector);
+
+        ControlCenter controlCenter = ControlCenter.instance;
+
+        controlCenter.addSubscriber(ring);
+        controlCenter.addSubscriber(detector);
+
+        controlCenter.startExperiment(50, ExperimentScope.ES5);
+
+        DataBaseManager dbMan = new DataBaseManager();
+        dbMan.setupConnection();
+        dbMan.createEmployeeTable();
+        dbMan.createExperimentTable();
+        dbMan.createIDCardTable();
+
+        detector.getExperimentList().forEach((e) -> {
+            dbMan.insertExperiment(e);
+        });
     }
 
     public static void buildEnvironment() {
