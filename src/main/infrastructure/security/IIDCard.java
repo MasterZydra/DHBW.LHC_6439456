@@ -4,13 +4,14 @@ import main.human_resources.IPerson;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public interface IIDCard extends IROIDCard {
     IPerson getPerson();
     void setValidFrom(Date date);
     void setValidUntil(Date date);
     void setIrisStructure(int[][] irisStructure);
-    void setPermissionList(ArrayList<Permission> permissionList);
+    void setPermissionList(List<Permission> permissionList);
     void setPassword(String password);
     void setPerson(IPerson person);
     void setIsLocked(Boolean isLocked);
@@ -20,7 +21,7 @@ public interface IIDCard extends IROIDCard {
     Date getValidUntil();
     int[][] getIrisStructure();
     boolean getIsLocked();
-    ArrayList<Permission> getPermissionList();
+    List<Permission> getPermissionList();
     void increaseInvalidPasswordCounter();
     void resetInvalidPasswordCounter();
     int getInvalidPasswordCounter();

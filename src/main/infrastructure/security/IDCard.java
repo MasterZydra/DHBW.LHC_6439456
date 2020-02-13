@@ -4,13 +4,14 @@ import main.human_resources.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public abstract class IDCard implements IIDCard {
     private String id;
     private Date validFrom;
     private Date validUntil;
     private int[][] irisStructure = new int[10][10];;
-    private ArrayList<Permission> permissionList;
+    private List<Permission> permissionList;
     private boolean isLocked;
     protected ICommunication communication;
 
@@ -44,7 +45,7 @@ public abstract class IDCard implements IIDCard {
         this.irisStructure = irisStructure;
     }
 
-    public void setPermissionList(ArrayList<Permission> permissionList) {
+    public void setPermissionList(List<Permission> permissionList) {
         this.permissionList = permissionList;
     }
 
@@ -80,7 +81,7 @@ public abstract class IDCard implements IIDCard {
         return isLocked;
     }
 
-    public ArrayList<Permission> getPermissionList() {
+    public List<Permission> getPermissionList() {
         return permissionList;
     }
 
