@@ -17,4 +17,9 @@ public class Block implements IBlock {
     public void setStructure(String structure) {
         this.structure = structure;
     }
+
+    @Override
+    public String toString() {
+        return "'" + this.uuid.toString() + "', '" + this.structure + "'";
+    }
 }
