@@ -1,5 +1,5 @@
 package main.infrastructure.security;
 
 public abstract class HashEngine {
-    abstract String hash(String rawData);
+    public abstract String hash(String rawData);
 }
