@@ -1,6 +1,8 @@
 package main.infrastructure;
 
 import main.human_resources.*;
+import main.infrastructure.lhc.ControlCenter;
+import main.infrastructure.lhc.IControlCenter;
 
 public class Workplace implements IWorkplace {
     private IControlCenter controlCenter;
