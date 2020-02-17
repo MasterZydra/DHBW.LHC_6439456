@@ -17,8 +17,16 @@ public class TestHiggsBoson
     @DisplayName("Check if detector finds the higgs boson")
     public void findHiggsBoson()
     {
+        // Original code from author 8093702
+        /*
         ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
         ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
+         */
+
+        // Fixed code after LHC training -> Use factory
+        IProtonTrap protonTrap1 = ProtonTrapFactory.buildProtonTrapA();
+        IProtonTrap protonTrap2 = ProtonTrapFactory.buildProtonTrapB();
+        // <-- Change end
 
         Detector detector = new Detector();
 

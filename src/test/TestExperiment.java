@@ -97,8 +97,16 @@ public class TestExperiment
     @DisplayName("Check if protons are filled correctly")
     public void initProtonTraps()
     {
+        // Original code from author 8093702
+        /*
         ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
         ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
+         */
+
+        // Fixed code after LHC training -> Use factory
+        IProtonTrap protonTrap1 = ProtonTrapFactory.buildProtonTrapA();
+        IProtonTrap protonTrap2 = ProtonTrapFactory.buildProtonTrapB();
+        // <-- Change end
 
         IProton proton1;
         IProton proton2;
@@ -148,8 +156,16 @@ public class TestExperiment
     @DisplayName("Check if blocks are filled correctly")
     public void checkExperimentBlocks()
     {
+        // Original code from author 8093702
+        /*
         ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
         ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
+         */
+
+        // Fixed code after LHC training -> Use factory
+        IProtonTrap protonTrap1 = ProtonTrapFactory.buildProtonTrapA();
+        IProtonTrap protonTrap2 = ProtonTrapFactory.buildProtonTrapB();
+        // <-- Change end
 
         Detector detector = new Detector();
 

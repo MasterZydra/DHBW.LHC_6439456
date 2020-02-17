@@ -20,6 +20,8 @@ public class TestLHC
     {
         try
         {
+            // Original code of author 8093702
+            /*
             IBuilding building = new Building();
             ILargeHadronCollider lhc = new LargeHadronCollider();
             building.setLargeHadronCollider(lhc);
@@ -46,6 +48,37 @@ public class TestLHC
 
             usp1.setBatteries(batteries1);
             usp2.setBatteries(batteries2);
+             */
+
+            // Fixed code so it works with builder which was added for LHC training
+            // Original code below
+            IBuilding building = new Building();
+            IRing ring = new Ring();
+            IUSP usp1 = new USP();
+            IUSP usp2 = new USP();
+
+            Battery[] batteries1 = new Battery[25];
+            for (int i = 0; i < 25; i++)
+            {
+                batteries1[i] = new Battery();
+            }
+            Battery[] batteries2 = new Battery[25];
+            for (int i = 0; i < 25; i++)
+            {
+                batteries2[i] = new Battery();
+            }
+
+            usp1.setBatteries(batteries1);
+            usp2.setBatteries(batteries2);
+
+            ILargeHadronCollider lhc = new LargeHadronCollider.Builder()
+                    .building(building)
+                    .ring(ring)
+                    .usp1(usp1)
+                    .usp2(usp2)
+                    .build();
+            // <-- Change end
+
             this.largeHadronCollider = lhc;
         }
         catch (Exception e)
