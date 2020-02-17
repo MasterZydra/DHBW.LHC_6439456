@@ -11,6 +11,10 @@ import main.infrastructure.*;
 import main.infrastructure.lhc.*;
 import main.infrastructure.lhc.detector.*;
 
+/*
+ * Author: 8093702
+ */
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
