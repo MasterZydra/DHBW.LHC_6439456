@@ -1,5 +1,6 @@
 package main.infrastructure.lhc;
 
+import main.infrastructure.IWorkplace;
 import main.infrastructure.lhc.*;
 import main.infrastructure.lhc.experiment.ExperimentScope;
 

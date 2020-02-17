@@ -1,8 +1,7 @@
 package main.infrastructure.lhc;
 
 import com.google.common.eventbus.EventBus;
-import main.infrastructure.lhc.AnalyseEvent;
-import main.infrastructure.lhc.Subscriber;
+import main.infrastructure.IWorkplace;
 import main.infrastructure.lhc.experiment.*;
 
 public enum ControlCenter implements IControlCenter {
