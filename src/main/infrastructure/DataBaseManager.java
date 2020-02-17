@@ -56,7 +56,7 @@ public class DataBaseManager {
         }
     }
 
-    private ResultSet executeSQLStatement(String sqlStatement, int numberOfColumns) {
+    private ResultSet executeSQLStatement(String sqlStatement) {
         try {
             Statement statement = connection.createStatement();
             return statement.executeQuery(sqlStatement);
@@ -67,30 +67,39 @@ public class DataBaseManager {
     }
 
     public List<Employee> selectEmployees() {
-        ResultSet result = executeSQLStatement("SELECT * FROM employee", 5);
+        ResultSet resultSet = executeSQLStatement("SELECT * FROM employee");
+        try {
         while (resultSet.next()) {
-            List<String> line = new ArrayList<String>();
-            for (int i = 1; i <= numberOfColumns; i++) {
-                line.add(resultSet.getString(i))
+                List<String> line = new ArrayList<String>();
+                for (int i = 1; i <= 999; i++) {
+                    line.add(resultSet.getString(i));
+                }
+                //ret.add(line);
             }
-            ret.add(line);
+            resultSet.close();
+            System.out.println();
+            return null;
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+            return null;
         }
-        resultSet.close();
-        System.out.println();
     }
 
     public List<IIDCard> selectIDCard() {
-        executeSQLStatement("SELECT * FROM idcard", 10);
+        ResultSet resultSet = executeSQLStatement("SELECT * FROM idcard");
         System.out.println();
+        return null;
     }
 
     public List<IExperiment> selectExperiment() {
-        executeSQLStatement("SELECT * FROM experiment", 5);
+        ResultSet resultSet = executeSQLStatement("SELECT * FROM experiment");
         System.out.println();
+        return null;
     }
 
     private List<IBlock> selectBlock(IExperiment experiment) {
-        executeSQLStatement("SELECT * FROM block WHERE experimentId='" + experiment.getID() + "'", 2);
+        ResultSet resultSet = executeSQLStatement("SELECT * FROM block WHERE experimentId='" + experiment.getID() + "'");
+        return null;
     }
 
     public void createEmployeeTable() {
