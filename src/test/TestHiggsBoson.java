@@ -1,6 +1,5 @@
 package test;
 
-import main.infrastructure.*;
 import main.infrastructure.lhc.*;
 import main.infrastructure.lhc.detector.*;
 import org.junit.jupiter.api.DisplayName;

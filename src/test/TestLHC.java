@@ -1,6 +1,5 @@
 package test;
 
-import main.infrastructure.*;
 import main.infrastructure.energy.*;
 import main.infrastructure.lhc.*;
 import org.junit.jupiter.api.*;

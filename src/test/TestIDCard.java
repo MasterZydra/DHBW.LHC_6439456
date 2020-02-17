@@ -1,8 +1,7 @@
 package test;
 
 import main.human_resources.*;
-import main.infrastructure.IReception;
-import main.infrastructure.Reception;
+import main.infrastructure.*;
 import main.infrastructure.security.*;
 import org.junit.jupiter.api.*;
 

@@ -1,11 +1,6 @@
 package test;
 
-import main.infrastructure.lhc.experiment.ExperimentScope;
-import main.infrastructure.lhc.experiment.IExperiment;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-
+import main.infrastructure.lhc.experiment.*;
 import main.human_resources.*;
 import main.infrastructure.*;
 import main.infrastructure.lhc.*;
@@ -15,6 +10,7 @@ import main.infrastructure.lhc.detector.*;
  * Author: 8093702
  */
 
+import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
