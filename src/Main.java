@@ -23,8 +23,8 @@ public class Main {
     public static void createDB() {
         System.out.println("\n---------- createDB() ----------");
         // Initialize structure for experiment
-        ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
-        ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
+        IProtonTrap protonTrap1 = ProtonTrapFactory.buildProtonTrapA();
+        IProtonTrap protonTrap2 = ProtonTrapFactory.buildProtonTrapB();
         Detector detector = new Detector();
         Ring ring = new Ring();
         ring.setProtonTraps(protonTrap1, protonTrap2);
@@ -81,17 +81,10 @@ public class Main {
     public static void buildEnvironment() {
         try {
             IBuilding building = new Building();
-            ILargeHadronCollider largeHadronCollider = new LargeHadronCollider();
-            building.setLargeHadronCollider(largeHadronCollider);
-            largeHadronCollider.setBuilding(building);
-
             IRing ring = new Ring();
-            ring.setLargeHadronCollider(largeHadronCollider);
-            largeHadronCollider.setRing(ring);
 
             IUSP usp1 = new USP();
             IUSP usp2 = new USP();
-            largeHadronCollider.setUSPs(usp1, usp2);
 
             Battery[] batteries1 = new Battery[25];
             for (int i = 0; i < 25; i++) {
@@ -104,6 +97,13 @@ public class Main {
 
             usp1.setBatteries(batteries1);
             usp2.setBatteries(batteries2);
+
+            ILargeHadronCollider largeHadronCollider = new LargeHadronCollider.Builder()
+                    .building(building)
+                    .ring(ring)
+                    .usp1(usp1)
+                    .usp2(usp2)
+                    .build();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -239,8 +239,8 @@ public class Main {
 
     public static void eventBusTest() {
         System.out.println("\n---------- eventBusTest() ----------");
-        ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
-        ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
+        IProtonTrap protonTrap1 = ProtonTrapFactory.buildProtonTrapA();
+        IProtonTrap protonTrap2 = ProtonTrapFactory.buildProtonTrapB();
 
         Detector detector = new Detector();
 
