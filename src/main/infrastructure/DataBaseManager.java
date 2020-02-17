@@ -4,11 +4,11 @@ import main.human_resources.Employee;
 import main.infrastructure.lhc.experiment.IBlock;
 import main.infrastructure.lhc.experiment.IExperiment;
 import main.infrastructure.security.EmployeeIDCard;
+import main.infrastructure.security.IIDCard;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataBaseManager {
     private final String driverName = "jdbc:hsqldb:";
@@ -28,7 +28,20 @@ public class DataBaseManager {
         }
     }
 
-    public synchronized void update(String sqlStatement) {
+    public void shutdown() {
+        System.out.println("--- shutdown");
+
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("SHUTDOWN");
+            connection.close();
+            System.out.println("isClosed : " + connection.isClosed());
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+        }
+    }
+
+    private synchronized void update(String sqlStatement) {
         try {
             Statement statement = connection.createStatement();
             int result = statement.executeUpdate(sqlStatement);
@@ -41,6 +54,43 @@ public class DataBaseManager {
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
         }
+    }
+
+    private ResultSet executeSQLStatement(String sqlStatement, int numberOfColumns) {
+        try {
+            Statement statement = connection.createStatement();
+            return statement.executeQuery(sqlStatement);
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+            return null;
+        }
+    }
+
+    public List<Employee> selectEmployees() {
+        ResultSet result = executeSQLStatement("SELECT * FROM employee", 5);
+        while (resultSet.next()) {
+            List<String> line = new ArrayList<String>();
+            for (int i = 1; i <= numberOfColumns; i++) {
+                line.add(resultSet.getString(i))
+            }
+            ret.add(line);
+        }
+        resultSet.close();
+        System.out.println();
+    }
+
+    public List<IIDCard> selectIDCard() {
+        executeSQLStatement("SELECT * FROM idcard", 10);
+        System.out.println();
+    }
+
+    public List<IExperiment> selectExperiment() {
+        executeSQLStatement("SELECT * FROM experiment", 5);
+        System.out.println();
+    }
+
+    private List<IBlock> selectBlock(IExperiment experiment) {
+        executeSQLStatement("SELECT * FROM block WHERE experimentId='" + experiment.getID() + "'", 2);
     }
 
     public void createEmployeeTable() {
