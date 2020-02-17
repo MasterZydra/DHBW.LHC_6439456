@@ -1,4 +1,4 @@
 package main.infrastructure.energy;
 
-public class ThreePinPlug {
+public class ThreePinPlug implements IThreePinPlug {
 }
