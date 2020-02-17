@@ -1,28 +1,20 @@
 package main.infrastructure.lhc;
 
 import main.infrastructure.energy.IUSP;
-import main.infrastructure.lhc.IRing;
 
 public class LargeHadronCollider implements ILargeHadronCollider {
     private IBuilding building;
     private IRing ring;
     private IUSP[] usps;
 
-    public LargeHadronCollider() {
-        this.usps = new IUSP[2];
-    }
+    private LargeHadronCollider(Builder builder) {
+        this.building = builder.building;
+        this.building.setLargeHadronCollider(this);
 
-    public void setBuilding(IBuilding building) {
-        this.building = building;
-    }
+        this.ring = builder.ring;
+        this.ring.setLargeHadronCollider(this);
 
-    public void setRing(IRing ring) {
-        this.ring = ring;
-    }
-
-    public void setUSPs(IUSP usp1, IUSP usp2) {
-        this.usps[0] = usp1;
-        this.usps[1] = usp2;
+        this.usps = builder.usps;
     }
 
     public IRing getRing()
@@ -34,4 +26,35 @@ public class LargeHadronCollider implements ILargeHadronCollider {
     {
         return usps;
     }
+
+    public static class Builder {
+        private IBuilding building;
+        private IRing ring;
+        private IUSP[] usps = new IUSP[2];
+
+        public Builder building(IBuilding building) {
+            this.building = building;
+            return this;
+        }
+
+        public Builder ring(IRing ring) {
+            this.ring = ring;
+            return this;
+        }
+
+        public Builder usp1(IUSP usp) {
+            this.usps[0] = usp;
+            return this;
+        }
+
+        public Builder usp2(IUSP usp) {
+            this.usps[1] = usp;
+            return this;
+        }
+
+        public LargeHadronCollider build() {
+            return new LargeHadronCollider(this);
+        }
+    }
 }
+
