@@ -1,7 +1,5 @@
 package main.infrastructure.lhc;
 
-import main.infrastructure.Configuration;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,9 +15,6 @@ public class ProtonTrap implements IProtonTrap {
     public ProtonTrap(ProtonTrapID trapID) {
         this.id = trapID;
         this.protons = new ArrayDeque<>();
-        for (int i = trapID.equals(ProtonTrapID.A) ? 1 : 2; i <= 50; i += 2) {
-            loadData(i, Configuration.instance.protonData + "proton_" + String.format("%02d", i) + ".txt");
-        }
     }
 
     public void loadData(int id, String dataFilePath) {
