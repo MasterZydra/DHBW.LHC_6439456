@@ -7,7 +7,7 @@ import main.infrastructure.lhc.experiment.*;
 import main.infrastructure.security.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
         createVisitorIDCard();
         createEmployeeIDCard();
         researcherAccessesDetector();
@@ -16,37 +16,66 @@ public class Main {
         readerCheckAccessForVisitor();
         readerCheckAccessForEmployee();
         eventBusTest();
-        buildEnvironment();
+        buildEnvironment();*/
         createDB();
     }
 
     public static void createDB() {
         System.out.println("\n---------- createDB() ----------");
+        // Initialize structure for experiment
         ProtonTrap protonTrap1 = new ProtonTrap(ProtonTrapID.A);
         ProtonTrap protonTrap2 = new ProtonTrap(ProtonTrapID.B);
-
         Detector detector = new Detector();
-
         Ring ring = new Ring();
         ring.setProtonTraps(protonTrap1, protonTrap2);
         ring.setDetector(detector);
 
         ControlCenter controlCenter = ControlCenter.instance;
-
         controlCenter.addSubscriber(ring);
         controlCenter.addSubscriber(detector);
-
         controlCenter.startExperiment(50, ExperimentScope.ES5);
 
+        // Create employees and id cards
+        IIDCardManagement cardManagement = IDCardManagement.instance;
+
+        ISecurityCenter securityCenter = SecurityCenter.instance;
+        ISecurityOfficer securityOfficer = new SecurityOfficer(0, "Sigi Sischerheitsmann");
+        securityCenter.setReceptionStaff(securityOfficer);
+
+        Employee employee1 = new ScientificAssistant(1, "Anton Assistent");
+        Employee employee2 = new Researcher(2, "Rudolf Researcher");
+
+        securityOfficer.createIDCard(employee1, EmployeeType.SCIENTIFIC_ASSISTANT);
+        securityOfficer.createIDCard(employee2, EmployeeType.RESEARCHER);
+
+        cardManagement.addIDCard(employee1.getIdCard());
+        cardManagement.addIDCard(employee2.getIdCard());
+
+        // Prepare database
+        System.out.println("Create DB");
         DataBaseManager dbMan = new DataBaseManager();
         dbMan.setupConnection();
         dbMan.createEmployeeTable();
         dbMan.createExperimentTable();
         dbMan.createIDCardTable();
 
+        // Save experiment
+        System.out.println("Save experiment");
         detector.getExperimentList().forEach((e) -> {
             dbMan.insertExperiment(e);
         });
+
+        // Save employee
+        System.out.println("Save employee");
+        dbMan.insertEmployee(employee1);
+        dbMan.insertEmployee(employee2);
+
+        // Save ID cards
+        System.out.println("Save ID-Card");
+        dbMan.insertIDCard((EmployeeIDCard) employee1.getIdCard());
+        dbMan.insertIDCard((EmployeeIDCard) employee2.getIdCard());
+
+        dbMan.shutdown();
     }
 
     public static void buildEnvironment() {
