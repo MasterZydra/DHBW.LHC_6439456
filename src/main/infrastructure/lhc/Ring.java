@@ -1,7 +1,6 @@
 package main.infrastructure.lhc;
 
 import com.google.common.eventbus.Subscribe;
-import main.infrastructure.ILargeHadronCollider;
 import main.infrastructure.lhc.detector.*;
 import main.infrastructure.lhc.experiment.*;
 
@@ -35,7 +34,7 @@ public class Ring extends Subscriber implements IRing {
         this.lhc = largeHadronCollider;
     }
 
-    public void setProtonTraps(ProtonTrap protonTrap1, ProtonTrap protonTrap2) {
+    public void setProtonTraps(IProtonTrap protonTrap1, IProtonTrap protonTrap2) {
         this.protonTraps[0] = protonTrap1;
         this.protonTraps[1] = protonTrap2;
     }
