@@ -1,6 +1,6 @@
 package main.infrastructure.energy;
 
-import main.infrastructure.LargeHadronCollider;
+import main.infrastructure.lhc.LargeHadronCollider;
 
 public class USP implements IUSP {
     private boolean isStandBy;
@@ -17,7 +17,7 @@ public class USP implements IUSP {
 
     }
 
-    public void charge(ThreePinPlug plug) {
+    public void charge(IThreePinPlug plug) {
 
     }
 
