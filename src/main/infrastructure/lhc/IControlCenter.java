@@ -1,4 +1,4 @@
-package main.infrastructure;
+package main.infrastructure.lhc;
 
 import main.infrastructure.lhc.*;
 import main.infrastructure.lhc.experiment.ExperimentScope;

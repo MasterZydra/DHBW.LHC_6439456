@@ -1,4 +1,4 @@
-package main.infrastructure;
+package main.infrastructure.lhc;
 
 import main.infrastructure.energy.IUSP;
 import main.infrastructure.lhc.*;

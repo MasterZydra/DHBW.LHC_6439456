@@ -1,4 +1,4 @@
-package main.infrastructure;
+package main.infrastructure.lhc;
 
 public class Building implements IBuilding {
     private final String owner = "CERN";

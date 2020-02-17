@@ -1,4 +1,4 @@
-package main.infrastructure;
+package main.infrastructure.lhc;
 
 import com.google.common.eventbus.EventBus;
 import main.infrastructure.lhc.AnalyseEvent;
