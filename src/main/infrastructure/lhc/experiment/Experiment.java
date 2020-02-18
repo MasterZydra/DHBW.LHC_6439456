@@ -2,7 +2,9 @@ package main.infrastructure.lhc.experiment;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class Experiment implements IExperiment {
@@ -12,19 +14,27 @@ public class Experiment implements IExperiment {
 
     private int[] protonIDs;
 
-    private IBlock[] blocks;
+    private List<IBlock> blocks;
 
     public Experiment() {
         this.uuid = UUID.randomUUID();
         this.protonIDs = new int[2];
-
-        this.blocks = new Block[200000];
+        this.blocks = new ArrayList<>();
         for (int i = 0; i < 200000; i++) {
-            this.blocks[i] = new Block();
+            this.blocks.add(new Block());
         }
 
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss");
         this.dateTimeStamp = (dateFormat.format(new Date()));
+    }
+
+    public Experiment(String uuid, String dateTimeStamp, boolean isHiggsBosonFound, int proton1, int proton2) {
+        this.uuid = UUID.fromString(uuid);
+        this.dateTimeStamp = dateTimeStamp;
+        this.isHiggsBosonFound = isHiggsBosonFound;
+        this.protonIDs = new int[2];
+        this.blocks = new ArrayList<>();
+        this.setProtonIDs(proton1, proton2);
     }
 
     @Override
@@ -38,7 +48,7 @@ public class Experiment implements IExperiment {
     }
 
     public IBlock getBlock(int index) {
-        return this.blocks[index];
+        return this.blocks.get(index);
     }
 
     public void setHiggsBosonFound() {
@@ -65,5 +75,13 @@ public class Experiment implements IExperiment {
 
     public String getID() {
         return this.uuid.toString();
+    }
+
+    public void addBlock(IBlock block) {
+        this.blocks.add(block);
+    }
+
+    public List<IBlock> getBlocks() {
+        return this.blocks;
     }
 }

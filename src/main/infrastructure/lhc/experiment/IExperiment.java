@@ -1,5 +1,7 @@
 package main.infrastructure.lhc.experiment;
 
+import java.util.List;
+
 public interface IExperiment {
     IBlock getBlock(int index);
     void setHiggsBosonFound();
@@ -7,4 +9,6 @@ public interface IExperiment {
     boolean getHiggsBosonFound();
     String getSQLString();
     String getID();
+    void addBlock(IBlock block);
+    List<IBlock> getBlocks();
 }
