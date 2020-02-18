@@ -1,3 +1,4 @@
+import main.DataBaseManager;
 import main.human_resources.*;
 import main.infrastructure.*;
 import main.infrastructure.energy.*;
@@ -5,6 +6,8 @@ import main.infrastructure.lhc.*;
 import main.infrastructure.lhc.detector.*;
 import main.infrastructure.lhc.experiment.*;
 import main.infrastructure.security.*;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {/*
@@ -17,7 +20,17 @@ public class Main {
         readerCheckAccessForEmployee();
         eventBusTest();
         buildEnvironment();*/
-        createDB();
+
+        // Generate experiments and save to database
+        // createDB();
+        // selectExperiments();
+    }
+
+    public static void selectExperiments() {
+        DataBaseManager dbMan = new DataBaseManager();
+        dbMan.setupConnection();
+        List<IExperiment> res = dbMan.selectExperiments();
+        dbMan.shutdown();
     }
 
     public static void createDB() {
@@ -33,7 +46,7 @@ public class Main {
         ControlCenter controlCenter = ControlCenter.instance;
         controlCenter.addSubscriber(ring);
         controlCenter.addSubscriber(detector);
-        controlCenter.startExperiment(50, ExperimentScope.ES5);
+        controlCenter.startExperiment(50, ExperimentScope.ES20);
 
         // Create employees and id cards
         IIDCardManagement cardManagement = IDCardManagement.instance;
@@ -55,25 +68,34 @@ public class Main {
         System.out.println("Create DB");
         DataBaseManager dbMan = new DataBaseManager();
         dbMan.setupConnection();
+        /*
         dbMan.createEmployeeTable();
-        dbMan.createExperimentTable();
         dbMan.createIDCardTable();
+         */
+        dbMan.createExperimentTable();
 
         // Save experiment
         System.out.println("Save experiment");
-        detector.getExperimentList().forEach((e) -> {
+        detector.getExperimentList().subList(14, 19).forEach((e) -> {
             dbMan.insertExperiment(e);
         });
 
         // Save employee
+        /*
         System.out.println("Save employee");
         dbMan.insertEmployee(employee1);
         dbMan.insertEmployee(employee2);
+         */
 
         // Save ID cards
+        /*
         System.out.println("Save ID-Card");
         dbMan.insertIDCard((EmployeeIDCard) employee1.getIdCard());
         dbMan.insertIDCard((EmployeeIDCard) employee2.getIdCard());
+         */
+
+        List<IExperiment> res = dbMan.selectExperiments();
+        res.stream().forEach(System.out::println);
 
         dbMan.shutdown();
     }
