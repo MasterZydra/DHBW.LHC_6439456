@@ -1,6 +1,9 @@
-package main.infrastructure;
+package main;
 
 import main.human_resources.Employee;
+import main.infrastructure.Configuration;
+import main.infrastructure.lhc.experiment.Block;
+import main.infrastructure.lhc.experiment.Experiment;
 import main.infrastructure.lhc.experiment.IBlock;
 import main.infrastructure.lhc.experiment.IExperiment;
 import main.infrastructure.security.EmployeeIDCard;
@@ -16,26 +19,26 @@ public class DataBaseManager {
     private Connection connection;
 
     public void setupConnection() {
-        System.out.println("--- setupConnection");
+        System.out.println("> setupConnection");
 
         try {
             Class.forName("org.hsqldb.jdbcDriver");
             String databaseURL = driverName + Configuration.instance.dataBaseFile;
             connection = DriverManager.getConnection(databaseURL, Configuration.instance.username, Configuration.instance.password);
-            System.out.println("connection : " + connection);
+            //System.out.println("connection : " + connection);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     public void shutdown() {
-        System.out.println("--- shutdown");
+        System.out.println("> shutdown");
 
         try {
             Statement statement = connection.createStatement();
             statement.execute("SHUTDOWN");
             connection.close();
-            System.out.println("isClosed : " + connection.isClosed());
+            //System.out.println("isClosed : " + connection.isClosed());
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
         }
@@ -66,40 +69,45 @@ public class DataBaseManager {
         }
     }
 
-    public List<Employee> selectEmployees() {
-        ResultSet resultSet = executeSQLStatement("SELECT * FROM employee");
+    public List<IExperiment> selectExperiments() {
+        ResultSet resultSet = executeSQLStatement("SELECT * FROM experiment");
+        List<IExperiment> experiments = new ArrayList<>();
+
         try {
-        while (resultSet.next()) {
-                List<String> line = new ArrayList<String>();
-                for (int i = 1; i <= 999; i++) {
-                    line.add(resultSet.getString(i));
-                }
-                //ret.add(line);
+            while (resultSet.next()) {
+                experiments.add(new Experiment(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getBoolean(3),
+                        resultSet.getInt(4),
+                        resultSet.getInt(5)));
             }
             resultSet.close();
-            System.out.println();
-            return null;
+
+            experiments.forEach((e) -> {
+                this.selectBlocks(e);
+            });
+
+            return experiments;
         } catch (SQLException sqle) {
             System.out.println(sqle.getMessage());
             return null;
         }
     }
 
-    public List<IIDCard> selectIDCard() {
-        ResultSet resultSet = executeSQLStatement("SELECT * FROM idcard");
-        System.out.println();
-        return null;
-    }
-
-    public List<IExperiment> selectExperiment() {
-        ResultSet resultSet = executeSQLStatement("SELECT * FROM experiment");
-        System.out.println();
-        return null;
-    }
-
-    private List<IBlock> selectBlock(IExperiment experiment) {
+    private void selectBlocks(IExperiment experiment) {
         ResultSet resultSet = executeSQLStatement("SELECT * FROM block WHERE experimentId='" + experiment.getID() + "'");
-        return null;
+        try {
+            while (resultSet.next()) {
+                experiment.addBlock(
+                    new Block(
+                        resultSet.getString(1),
+                        resultSet.getString(2)));
+            }
+            resultSet.close();
+        } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
+        }
     }
 
     public void createEmployeeTable() {
