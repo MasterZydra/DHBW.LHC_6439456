@@ -1,6 +1,7 @@
 package main.infrastructure.lhc.detector;
 
 import com.google.common.eventbus.Subscribe;
+import main.DataBaseManager;
 import main.infrastructure.Configuration;
 import main.infrastructure.lhc.experiment.*;
 import main.infrastructure.lhc.*;
@@ -30,7 +31,19 @@ public class Detector extends Subscriber implements IDetector {
 
     public Detector() {
         super();
-        this.experimentList = new LinkedList<>();
+
+        if (Configuration.instance.loadFromDataBase) {
+            this.loadExperiments();
+        } else {
+            this.experimentList = new LinkedList<>();
+        }
+    }
+
+    private void loadExperiments() {
+        DataBaseManager dbMan = new DataBaseManager();
+        dbMan.setupConnection();
+        this.experimentList = dbMan.selectExperiments();
+        dbMan.shutdown();
     }
 
     public void viewExperiments() {
