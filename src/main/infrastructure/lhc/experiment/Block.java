@@ -10,6 +10,11 @@ public class Block implements IBlock {
         this.uuid = UUID.randomUUID();
     }
 
+    public Block(String uuid, String structure) {
+        this.uuid = UUID.fromString(uuid);
+        this.structure = structure;
+    }
+
     public String getStructure() {
         return this.structure;
     }
