@@ -18,6 +18,8 @@ public enum Configuration {
 
     public String protonData = ud + fs + "data" + fs;
 
+    public Boolean loadFromDataBase = true;
+
     public String getSearchAlgorithmPath() {
         String path = ud + fs;
         switch (searchAlgorithm) {
