@@ -1,5 +1,6 @@
 package test;
 
+import main.infrastructure.Configuration;
 import main.infrastructure.lhc.*;
 import main.infrastructure.lhc.detector.*;
 import org.junit.jupiter.api.DisplayName;
@@ -26,6 +27,10 @@ public class TestHiggsBoson
         // Fixed code after LHC training -> Use factory
         IProtonTrap protonTrap1 = ProtonTrapFactory.buildProtonTrapA();
         IProtonTrap protonTrap2 = ProtonTrapFactory.buildProtonTrapB();
+        // <-- Change end
+
+        // Fix after implementation of DB
+        Configuration.instance.loadFromDataBase = false;
         // <-- Change end
 
         Detector detector = new Detector();

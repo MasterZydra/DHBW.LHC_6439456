@@ -51,6 +51,10 @@ public class TestExperiment
     @DisplayName("Check search algorithms")
     public void checkSearchAlgorithms()
     {
+        // Fix after implementation of DB
+        Configuration.instance.loadFromDataBase = false;
+        // <-- Change end
+
         Detector detector = new Detector();
         Configuration.instance.searchAlgorithm = SearchAlgorithm.Native;
         detector.receive(new AnalyseEvent());
@@ -167,6 +171,10 @@ public class TestExperiment
         IProtonTrap protonTrap2 = ProtonTrapFactory.buildProtonTrapB();
         // <-- Change end
 
+        // Fix after implementation of DB
+        Configuration.instance.loadFromDataBase = false;
+        // <-- Change end
+
         Detector detector = new Detector();
 
         Ring ring = new Ring();
@@ -187,7 +195,7 @@ public class TestExperiment
             assertEquals(experiment.getBlock(i).getStructure().length(), 10);
         }
 
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> experiment.getBlock(200000));
+        assertThrows(IndexOutOfBoundsException.class, () -> experiment.getBlock(200000));
     }
 
 }
