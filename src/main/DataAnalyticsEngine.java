@@ -1,5 +1,6 @@
 package main;
 
+import main.infrastructure.Configuration;
 import main.infrastructure.lhc.detector.Detector;
 import main.infrastructure.lhc.detector.IDetector;
 import main.infrastructure.lhc.experiment.IBlock;
@@ -12,6 +13,15 @@ import java.util.stream.Collectors;
 
 public class DataAnalyticsEngine {
     public static void main(String[] args) {
+        /*
+         * !!! Important !!!
+         * Check if directory "dataBase" exists and is filled.
+         * If not execute "createDB();" from in Main.java to create it.
+         */
+
+        // Always load data from DB
+        Configuration.instance.loadFromDataBase = true;
+
         IDetector detector = new Detector();
 
         uniqueBlocksWithPound(detector.getExperimentList());
@@ -79,7 +89,7 @@ public class DataAnalyticsEngine {
                         .filter(blockEndsWithZ)
                         .map(e -> e.getStructure())
                         .distinct()
-                        .sorted()
+                        .sorted(stringComparator)
                         .collect(Collectors.joining("  ")))
                 .forEach(System.out::println);
 
