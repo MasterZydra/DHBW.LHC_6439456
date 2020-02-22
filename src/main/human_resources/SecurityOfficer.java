@@ -44,7 +44,6 @@ public class SecurityOfficer extends Employee implements ISecurityOfficer {
         writer.setIrisStructure(employee.iris);
         writer.setPermissionList(permissions);
         writer.setPassword("helloLHC2020");
-        // TODO Fingerprint
         employee.setIDCard(this.currentIDCard);
 
         this.securityCenter.addEmployeeIdCard(this.currentIDCard);

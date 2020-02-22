@@ -47,7 +47,6 @@ public abstract class Person implements IPerson {
 
     public String enterPassword() {
         return "12345";
-        // TODO Von Konsole oder NAme+Id mit max. 5 Stellen
     }
 
     public IIDCard getIdCard() {
